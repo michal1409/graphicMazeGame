@@ -16,8 +16,8 @@ public class MyModel extends Observable implements IModel {
     private int characterPositionRow = 0; //to get start point
     private int characterPositionColumn = 0; //to get stars point
     private int[][] maze; // to build from jar
-    private int maxRow = 0;
-    private int maxCol = 0;
+    private int maxRow = 20;
+    private int maxCol = 20;
 
 
     public MyModel() {
@@ -33,7 +33,7 @@ public class MyModel extends Observable implements IModel {
     public void generateMaze(int width, int height){
         threadPool.execute(() -> {
             IMazeGenerator mg = new MyMazeGenerator();
-            Maze MyMaze = mg.generate(height, width);
+            Maze MyMaze = mg.generate(20, 20);
             this.maze = MyMaze.getData();
             this.characterPositionRow = MyMaze.getStartPosition().getRow();
             this.characterPositionColumn = MyMaze.getStartPosition().getCol();
