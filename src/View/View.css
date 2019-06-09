@@ -1,12 +1,12 @@
 .root{
-    -fx-background-color: bisque;
+    -fx-background-color:linear-gradient(#7CAFC2, #86C1B9, #A1B56C);
 }
 
 Button {
-    -fx-text-fill: white;
+    -fx-text-fill: #e8e8e8;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-background-color: linear-gradient(#4285b1,#2A5058);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 

@@ -1,4 +1,5 @@
 import Model.MyModel;
+import View.LoginViewController;
 import View.MyViewController;
 import ViewModel.MyViewModel;
 import javafx.application.Application;
@@ -24,12 +25,12 @@ public class Main extends Application {
         //--------------
         primaryStage.setTitle("My Application!");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(getClass().getResource("View/MyView.fxml").openStream());
-        Scene scene = new Scene(root, 800, 700);
+        Parent root = fxmlLoader.load(getClass().getResource("View/LoginView.fxml").openStream());
+        Scene scene = new Scene(root, 1000, 1000);
         scene.getStylesheets().add(getClass().getResource("View/View.css").toExternalForm());
         primaryStage.setScene(scene);
         //--------------
-        MyViewController view = fxmlLoader.getController();
+        LoginViewController view = fxmlLoader.getController();
         view.setResizeEvent(scene);
         view.setViewModel(viewModel);
         viewModel.addObserver(view);

@@ -23,8 +23,8 @@ public class MyViewController implements Observer,IView {
     @FXML
     private MyViewModel viewModel;
     public MazeDisplayer mazeDisplayer;
-    public javafx.scene.control.TextField txtfld_rowsNum;
-    public javafx.scene.control.TextField txtfld_columnsNum;
+    //public javafx.scene.control.TextField txtfld_rowsNum;
+    //public javafx.scene.control.TextField txtfld_columnsNum;
     public javafx.scene.control.Label lbl_rowsNum;
     public javafx.scene.control.Label lbl_columnsNum;
     public javafx.scene.control.Button btn_generateMaze;
@@ -53,14 +53,25 @@ public class MyViewController implements Observer,IView {
         mazeDisplayer.setMaze(maze);
         int characterPositionRow = viewModel.getCharacterPositionRow();
         int characterPositionColumn = viewModel.getCharacterPositionColumn();
+        int goalPositionRow = viewModel.getGoalPositionRow();
+        int goalPositionColumn = viewModel.getGoalPositionColumn();
         mazeDisplayer.setCharacterPosition(characterPositionRow, characterPositionColumn);
+        mazeDisplayer.setGoalPosition(goalPositionRow, goalPositionColumn);
         this.characterPositionRow.set(characterPositionRow + "");
         this.characterPositionColumn.set(characterPositionColumn + "");
     }
 
+    @Override
+    public void displayLogin() {
+        //not implemented
+    }
+
     public void generateMaze() {
-        int heigth = Integer.valueOf(txtfld_rowsNum.getText());
-        int width = Integer.valueOf(txtfld_columnsNum.getText());
+        //todo - set the correct values
+        //int heigth = Integer.valueOf(txtfld_rowsNum.getText());
+        //int width = Integer.valueOf(txtfld_columnsNum.getText());
+        int heigth = 30;
+        int width = 30;
         btn_generateMaze.setDisable(true);
         viewModel.generateMaze(width, heigth);
     }
@@ -124,7 +135,7 @@ public class MyViewController implements Observer,IView {
             stage.setTitle("AboutController");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("About.fxml").openStream());
-            Scene scene = new Scene(root, 400, 350);
+            Scene scene = new Scene(root, 800, 800);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
@@ -138,5 +149,6 @@ public class MyViewController implements Observer,IView {
     }
 
     //endregion
+    //todo - save maze : use file chooser to save the maze.
 
 }

@@ -18,11 +18,11 @@ import javafx.stage.Stage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GameViewController implements Observer,IView {
+public class LoginViewController implements Observer,IView {
 
     @FXML
     private MyViewModel viewModel;
-    public MazeDisplayer mazeDisplayer;
+    public LoginDisplayer LoginDisplayer;
     public javafx.scene.control.TextField txtfld_rowsNum;
     public javafx.scene.control.TextField txtfld_columnsNum;
     public javafx.scene.control.Label lbl_rowsNum;
@@ -33,40 +33,38 @@ public class GameViewController implements Observer,IView {
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
         bindProperties(viewModel);
+        displayLogin();
     }
 
     private void bindProperties(MyViewModel viewModel) {
-        lbl_rowsNum.textProperty().bind(viewModel.characterPositionRow);
-        lbl_columnsNum.textProperty().bind(viewModel.characterPositionColumn);
+        //lbl_rowsNum.textProperty().bind(viewModel.characterPositionRow);
+        //lbl_columnsNum.textProperty().bind(viewModel.characterPositionColumn);
     }
 
     @Override
     public void update(Observable o, Object arg) {
         if (o == viewModel) {
-            displayMaze(viewModel.getMaze());
+            displayLogin();
             btn_generateMaze.setDisable(false);
         }
     }
 
     @Override
-    public void displayMaze(int[][] maze) {
-        mazeDisplayer.setMaze(maze);
-        int characterPositionRow = viewModel.getCharacterPositionRow();
-        int characterPositionColumn = viewModel.getCharacterPositionColumn();
-        mazeDisplayer.setCharacterPosition(characterPositionRow, characterPositionColumn);
-        this.characterPositionRow.set(characterPositionRow + "");
-        this.characterPositionColumn.set(characterPositionColumn + "");
+    public void displayMaze(int[][] maze){
+        //not implemented;
+        //LoginDisplayer.setLogin();
+    }
+
+    @Override
+    public void displayLogin() {
+        LoginDisplayer.setLogin();
     }
 
     public void generateMaze() {
-        int heigth = Integer.valueOf(txtfld_rowsNum.getText());
+        int height = Integer.valueOf(txtfld_rowsNum.getText());
         int width = Integer.valueOf(txtfld_columnsNum.getText());
         btn_generateMaze.setDisable(true);
-        viewModel.generateMaze(width, heigth);
-    }
-
-    public void solveMaze(ActionEvent actionEvent) {
-        showAlert("Solving maze..");
+        viewModel.generateMaze(width, height);
     }
 
     private void showAlert(String alertMessage) {
@@ -81,24 +79,24 @@ public class GameViewController implements Observer,IView {
     }
 
     //region String Property for Binding
-    public StringProperty characterPositionRow = new SimpleStringProperty();
+    public StringProperty PositionRow = new SimpleStringProperty();
 
-    public StringProperty characterPositionColumn = new SimpleStringProperty();
+    public StringProperty PositionColumn = new SimpleStringProperty();
 
-    public String getCharacterPositionRow() {
-        return characterPositionRow.get();
+    public String getPositionRow() {
+        return PositionRow.get();
     }
 
-    public StringProperty characterPositionRowProperty() {
-        return characterPositionRow;
+    public StringProperty PositionRowProperty() {
+        return PositionRow;
     }
 
-    public String getCharacterPositionColumn() {
-        return characterPositionColumn.get();
+    public String getPositionColumn() {
+        return PositionColumn.get();
     }
 
-    public StringProperty characterPositionColumnProperty() {
-        return characterPositionColumn;
+    public StringProperty PositionColumnProperty() {
+        return PositionColumn;
     }
 
     public void setResizeEvent(Scene scene) {
@@ -134,7 +132,7 @@ public class GameViewController implements Observer,IView {
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
-        this.mazeDisplayer.requestFocus();
+        this.LoginDisplayer.requestFocus();
     }
 
     //endregion
