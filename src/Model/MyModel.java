@@ -91,7 +91,7 @@ public class MyModel extends Observable implements IModel {
     public int[][] getSolution(int startRow,int startCol){
         mazeObject.setStartPosition(startRow,startCol);
         SearchableMaze searchableMaze = new SearchableMaze(this.mazeObject);
-        ISearchingAlgorithm searcher = new BestFirstSearch();
+        ISearchingAlgorithm searcher = new BreadthFirstSearch();
         Solution solution = searcher.solve(searchableMaze);
         ArrayList<AState> solutionPath = solution.getSolutionPath();
         int[][] solved = this.maze.clone();
