@@ -69,7 +69,7 @@ public class MazeDisplayer extends Canvas {
                             //gc.fillRect(i * cellHeight, j * cellWidth, cellHeight, cellWidth);
                             gc.drawImage(wallImage,j * cellWidth, i * cellHeight, cellWidth, cellHeight);
                         }
-                        else if(maze[i][j] == 8){
+                        else if(maze[i][j] == 8 && (i!=goalRow || j!=goalCol)){
                             gc.drawImage(PathImage,j * cellWidth, i * cellHeight, cellWidth, cellHeight);
                         }
                         if(i==goalRow && j==goalCol){

@@ -25,9 +25,9 @@ public class MyViewModel extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         if (o==model){
             characterPositionRowIndex = model.getCharacterPositionRow();
-            characterPositionRow.set(characterPositionRowIndex + "");
+            characterPositionRow.set(String.valueOf(characterPositionRowIndex));
             characterPositionColumnIndex = model.getCharacterPositionColumn();
-            characterPositionColumn.set(characterPositionColumnIndex + "");
+            characterPositionColumn.set(String.valueOf(characterPositionColumnIndex));
             setChanged();
             notifyObservers();
         }

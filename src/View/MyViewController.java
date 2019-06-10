@@ -75,8 +75,8 @@ public class MyViewController implements Observer,IView {
         //todo - set the correct values
         //int heigth = Integer.valueOf(txtfld_rowsNum.getText());
         //int width = Integer.valueOf(txtfld_columnsNum.getText());
-        int heigth = 30;
-        int width = 30;
+        int heigth = 10;
+        int width = 10;
         btn_generateMaze.setDisable(true);
         //btn_solveMaze.setDisable(false);
         viewModel.generateMaze(width, heigth);

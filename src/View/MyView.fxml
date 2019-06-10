@@ -94,7 +94,7 @@
     <center>
         <Pane BorderPane.alignment="CENTER">
             <children>
-                <MazeDisplayer fx:id="mazeDisplayer" height="600.0" imageFileNameCharacter="resources/Images/character1.png" imageFileNameWall="resources/Images/wall3.png" imageFileNameGoal="resources/Images/goal.png"  imageFileNamePath="resources/Images/Path.png" onMouseClicked="#mouseClicked" width="600.0" />
+                <MazeDisplayer fx:id="mazeDisplayer" height="800.0" imageFileNameCharacter="resources/Images/character1.png" imageFileNameWall="resources/Images/wall3.png" imageFileNameGoal="resources/Images/goal.png"  imageFileNamePath="resources/Images/Path.png" onMouseClicked="#mouseClicked" width="800.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
