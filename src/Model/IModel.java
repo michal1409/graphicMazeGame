@@ -11,5 +11,5 @@ public interface IModel {
     int getCharacterPositionColumn();
     int getGoalPositionRow();
     int getGoalPositionColumn();
-
+    int[][] getSolution(int a, int b);
 }

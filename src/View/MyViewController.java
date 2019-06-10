@@ -28,16 +28,21 @@ public class MyViewController implements Observer,IView {
     public javafx.scene.control.Label lbl_rowsNum;
     public javafx.scene.control.Label lbl_columnsNum;
     public javafx.scene.control.Button btn_generateMaze;
+    public javafx.scene.control.Button btn_solveMaze;
+    private int[][] maze;
+
 
 
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
         bindProperties(viewModel);
+        this.maze = viewModel.getMaze();
     }
 
     private void bindProperties(MyViewModel viewModel) {
         lbl_rowsNum.textProperty().bind(viewModel.characterPositionRow);
         lbl_columnsNum.textProperty().bind(viewModel.characterPositionColumn);
+        //this.maze = viewModel.getMaze();
     }
 
     @Override
@@ -73,11 +78,14 @@ public class MyViewController implements Observer,IView {
         int heigth = 30;
         int width = 30;
         btn_generateMaze.setDisable(true);
+        //btn_solveMaze.setDisable(false);
         viewModel.generateMaze(width, heigth);
     }
 
     public void solveMaze(ActionEvent actionEvent) {
-        showAlert("Solving maze..");
+
+        //showAlert("Solving maze..");
+        this.maze = viewModel.getSolution();
     }
 
     private void showAlert(String alertMessage) {
