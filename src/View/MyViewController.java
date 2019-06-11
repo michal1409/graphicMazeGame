@@ -15,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -94,6 +96,13 @@ public class MyViewController implements Observer,IView {
         alert.show();
     }
 
+    private void showAboutAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("This game was programed by Raz Klein and Michal Ezrets/n hope you enjoy the game :) ");
+        alert.setTitle("About");
+        alert.show();
+    }
+
     public void KeyPressed(KeyEvent keyEvent) {
         viewModel.moveCharacter(keyEvent.getCode());
         keyEvent.consume();
@@ -139,18 +148,25 @@ public class MyViewController implements Observer,IView {
     }
 
     public void About(ActionEvent actionEvent) {
+        //showAboutAlert();
+
         try {
             Stage stage = new Stage();
             stage.setTitle("AboutController");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("About.fxml").openStream());
-            Scene scene = new Scene(root, 800, 800);
+            Scene scene = new Scene(root, 400, 350);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
+            //showAboutAlert();
+
+
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
