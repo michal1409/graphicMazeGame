@@ -135,6 +135,7 @@ public class MyViewController implements Observer,IView {
                 System.out.println("Height: " + newSceneHeight);
             }
         });
+        mazeDisplayer.resize(scene.getWidth(),scene.getHeight());
     }
 
     public void About(ActionEvent actionEvent) {
