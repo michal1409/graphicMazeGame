@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import View.MazeDisplayer?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.layout.Pane?>
-<?import View.MazeDisplayer?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane onKeyPressed="#KeyPressed" stylesheets="View.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <left>
         <VBox prefHeight="274.0" prefWidth="237.0" spacing="5.0" BorderPane.alignment="CENTER">
@@ -33,22 +32,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                    <Label text="GET THE PLAYBOOK!" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-                    <font><Font name="Agency FB bold" size="22" ></Font></font>
+                    <Label text="GET THE PLAYBOOK!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+                    <font><Font name="Agency FB bold" size="22" /></font>
                     </Label>
                     <Button fx:id="btn_generateMaze" onAction="#generateMaze" prefHeight="25.0" prefWidth="150.0" text="Generate Maze" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                     <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" minHeight="10" minWidth="150.0" onAction="#solveMaze" text="Help me fined it" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                    <Label text="Page number:" GridPane.columnIndex="0" GridPane.rowIndex="3" >
-                        <font><Font name="Agency FB bold" size="18" ></Font></font>
+                    <Label text="Page number:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <font><Font name="Agency FB bold" size="18" /></font>
                     </Label>
-                    <Label text="Line number:" GridPane.columnIndex="0" GridPane.rowIndex="4" >
-                        <font><Font name="Agency FB bold" size="18" ></Font></font>
+                    <Label text="Line number:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                        <font><Font name="Agency FB bold" size="18" /></font>
                     </Label>
-                    <Label fx:id="lbl_rowsNum" text="${controller.characterPositionRow}" GridPane.columnIndex="1" GridPane.rowIndex="3" >
-                        <font><Font name="Agency FB bold" size="18" ></Font></font>
+                    <Label fx:id="lbl_rowsNum" text="${controller.characterPositionRow}" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <font><Font name="Agency FB bold" size="18" /></font>
                     </Label>
-                    <Label fx:id="lbl_columnsNum" text="${controller.characterPositionColumn}"  GridPane.columnIndex="1" GridPane.rowIndex="4" >
-                        <font><Font name="Agency FB bold" size="18" ></Font></font>
+                    <Label fx:id="lbl_columnsNum" text="${controller.characterPositionColumn}" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <font><Font name="Agency FB bold" size="18" /></font>
                     </Label>
                 </GridPane>
             </children>
@@ -61,7 +60,7 @@
         <HBox BorderPane.alignment="CENTER">
             <children>
                 <Label text="Status : you are X steps closer to fined Barny's charm">
-                    <font><Font name="Agency FB bold" size="18" ></Font></font>
+                    <font><Font name="Agency FB bold" size="18" /></font>
                 </Label>
             </children>
         </HBox>
@@ -94,11 +93,14 @@
     <center>
         <Pane BorderPane.alignment="CENTER">
             <children>
-                <MazeDisplayer fx:id="mazeDisplayer" height="800.0" imageFileNameCharacter="resources/Images/character1.png" imageFileNameWall="resources/Images/wall3.png" imageFileNameGoal="resources/Images/goal.png"  imageFileNamePath="resources/Images/Path.png" onMouseClicked="#mouseClicked" width="800.0" />
+                <MazeDisplayer fx:id="mazeDisplayer" height="800.0" imageFileNameCharacter="resources/Images/character1.png" imageFileNameGoal="resources/Images/goal.png" imageFileNamePath="resources/Images/Path.png" imageFileNameWall="resources/Images/wall3.png" onMouseClicked="#mouseClicked" width="800.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
         </Pane>
     </center>
 </BorderPane>

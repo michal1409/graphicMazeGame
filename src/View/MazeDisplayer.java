@@ -127,6 +127,55 @@ public class MazeDisplayer extends Canvas {
         this.ImageFileNamePath.set(imageFileNamePath);
     }
 
+    @Override
+    public double minHeight(double width)
+    {
+        return 200;
+    }
+
+    @Override
+    public double maxHeight(double width)
+    {
+        return 1000;
+    }
+
+    @Override
+    public double prefHeight(double height)
+    {
+        return 600;
+    }
+
+    @Override
+    public double prefWidth(double width)
+    {
+        return 600;
+    }
+
+    @Override
+    public double minWidth(double height)
+    {
+        return 200;
+    }
+
+    @Override
+    public double maxWidth(double height)
+    {
+        return 10000;
+    }
+
+    @Override
+    public boolean isResizable()
+    {
+        return true;
+    }
+
+    @Override
+    public void resize(double width, double height)
+    {
+        super.setWidth(width);
+        super.setHeight(height);
+        redraw();
+    }
     //endregion
 
 }
