@@ -46,8 +46,6 @@ public class LoginViewController extends ControllerAbstract {
 
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
-        Image image = new Image("../Images/ThePkaybook.jpg");
-        image1.setImage(image);
         displayLogin();
     }
 
