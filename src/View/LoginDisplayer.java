@@ -27,7 +27,7 @@ public class LoginDisplayer extends Canvas {
     public void redraw() {
         double canvasHeight = getHeight();
         double canvasWidth = getWidth();
-        double cellHeight = canvasHeight / 2;
+        double cellHeight = canvasHeight / 1;
         double cellWidth = canvasWidth / 4;
         //todo - edit the height and width by the picture size
 

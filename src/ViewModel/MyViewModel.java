@@ -16,6 +16,9 @@ public class MyViewModel extends Observable implements Observer {
     private int characterPositionColumnIndex;
     public StringProperty characterPositionRow = new SimpleStringProperty("1"); //For Binding
     public StringProperty characterPositionColumn = new SimpleStringProperty("1"); //For Binding
+    public int rowsInput;
+    public int colInput;
+
 
     public MyViewModel(IModel model){
         this.model = model;
@@ -60,6 +63,12 @@ public class MyViewModel extends Observable implements Observer {
     public int getGoalPositionRow(){return model.getGoalPositionRow();}
 
     public int getGoalPositionColumn(){return model.getGoalPositionColumn();}
+
+    public int getRowsInput(){return rowsInput;}
+    public int getColInput(){return colInput;}
+    public void setRowsInput(int n){rowsInput=n;}
+    public void setColInput(int n){colInput=n;}
+
 
 
 }

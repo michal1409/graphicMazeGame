@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class MyViewController implements Observer,IView {
+public class MyViewController extends ControllerAbstract {
 
     @FXML
     private MyViewModel viewModel;
