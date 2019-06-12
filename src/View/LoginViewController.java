@@ -1,16 +1,19 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -18,12 +21,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import javax.swing.text.html.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 
 public class LoginViewController extends ControllerAbstract {
 
@@ -40,14 +45,12 @@ public class LoginViewController extends ControllerAbstract {
 
     private MediaPlayer media;
 
-
     public void OnButtonPressed() throws IOException {
-        if (rowNumInput==null || colNumInput==null ||isInteger(rowNumInput.getText(),10) && isInteger(colNumInput.getText(),10)){
+        if (rowNumInput==null || isInteger(rowNumInput.getText(),10)){
             viewModel.setColInput(Integer.valueOf(rowNumInput.getText()));
-            viewModel.setRowsInput(Integer.valueOf(colNumInput.getText()));
-            System.out.println(viewModel.colInput);
-            System.out.println(viewModel.rowsInput);
+            viewModel.setRowsInput(Integer.valueOf(rowNumInput.getText()));
             // open the next scene
+            stageCon.close();
             Stage stage = new Stage();
             stage.setTitle("Maze");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/MyView.fxml"));
@@ -60,8 +63,8 @@ public class LoginViewController extends ControllerAbstract {
             view.setViewModel(viewModel);
             viewModel.addObserver(view);
             stage.setScene(scene);
+            SetStageCloseEvent(stage);
             stage.show();
-
 
         }
         else{
@@ -157,13 +160,25 @@ public class LoginViewController extends ControllerAbstract {
         this.LoginDisplayer.requestFocus();
     }
 
-    public void musicBackground(){
-        Media musicFile = new Media("../Images/backgroundSound.mp3");
-        media=new MediaPlayer(musicFile);
-        media.play();
-        media.setVolume(0.3);
 
+    private void SetStageCloseEvent(Stage primaryStage) {
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent windowEvent) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to exit?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    // ... user chose OK
+                    // Close program
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                    windowEvent.consume();
+                }
+            }
+        });
     }
+
+
+
 
     //endregion
 

@@ -3,15 +3,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="192.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="This game was programed by Raz Klein and Michal Ezrets" AnchorPane.topAnchor="0" >
-         <font><Font name="Agency FB bold" size="18" /></font>
-      </Label>
-      <Label text="Hope you enjoy the game :)" AnchorPane.topAnchor="20">
-         <font><Font name="Agency FB bold" size="18" /></font>
-      </Label>
+      <Label layoutX="56.0" layoutY="14.0" text="This game was made by" />
+      <Label layoutX="48.0" layoutY="38.0" text="Raz Klein and Michal Ezrats" textFill="RED" />
+      <Label layoutX="44.0" layoutY="62.0" text="Inspired by KING Barney" />
+      <Label layoutX="24.0" layoutY="88.0" text="From &quot;How I Met Your Mother&quot; series" />
+      <Label layoutX="72.0" layoutY="135.0" text="Hope you enjoy :)" />
+      <Label layoutX="22.0" layoutY="111.0" text="The maze is solved with BFS algorithm" />
    </children>
 </AnchorPane>

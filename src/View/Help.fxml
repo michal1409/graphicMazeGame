@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="192.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="72.0" layoutY="14.0" text="To move Barnie " />
+        <Label layoutX="38.0" layoutY="38.0" text="Use the keys 2,4,6,8 and 1,3,5,7 " textFill="#282828" />
+        <Label layoutX="41.0" layoutY="62.0" text="you can't move towards a ring!" />
+        <Label layoutX="29.0" layoutY="88.0" text="Barnie don't want to get married..." />
+        <Label layoutX="66.0" layoutY="139.0" text="You'll win the game!" />
+        <Label layoutX="46.0" layoutY="114.0" text="If  you'll reach the PlayBook" />
+      <Label layoutX="79.0" layoutY="163.0" text="Best Of Luck!" />
+    </children>
+</AnchorPane>

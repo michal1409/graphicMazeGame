@@ -137,6 +137,13 @@ public class MazeDisplayer extends Canvas {
         this.ImageFileNamePath.set(imageFileNamePath);
     }
 
+    public boolean isGoalReached(){
+        if (characterPositionColumn==goalCol && characterPositionRow==goalRow)
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public double minHeight(double width)
     {

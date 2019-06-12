@@ -12,24 +12,18 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#KeyPressed" prefHeight="348.0" prefWidth="527.0" style="-fx-background-color: LIGHTYELLOW;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginViewController">
     <children>
         <LoginDisplayer fx:id="LoginDisplayer" height="348.0" imageFileNameFirst="" imageFileNameSecond="" onMouseClicked="#mouseClicked" width="527.0" />
-        <Button fx:id="startGameButton" layoutX="367.0" layoutY="278.0" mnemonicParsing="false" onAction="#OnButtonPressed" prefHeight="38.0" prefWidth="123.0" text="Now Find It!">
+        <Button fx:id="startGameButton" layoutX="187.0" layoutY="289.0" mnemonicParsing="false" onAction="#OnButtonPressed" prefHeight="38.0" prefWidth="123.0" text="Now Find It!">
             <font>
                 <Font size="17.0" />
             </font>
         </Button>
-        <TextField fx:id="rowNumInput" layoutX="135.0" layoutY="267.0" prefHeight="25.0" prefWidth="89.0" />
-        <TextField fx:id="colNumInput" layoutX="135.0" layoutY="304.0" prefHeight="25.0" prefWidth="89.0" />
+        <TextField fx:id="rowNumInput" layoutX="261.0" layoutY="255.0" prefHeight="25.0" prefWidth="89.0" />
         <Label layoutX="153.0" layoutY="14.0" prefHeight="31.0" prefWidth="234.0" text="Barnie lost his magic " textOverrun="CLIP">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="30.0" layoutY="267.0" text="Page Number">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="30.0" layoutY="304.0" prefHeight="25.0" prefWidth="98.0" text="Line Number">
+        <Label layoutX="138.0" layoutY="255.0" text="Page Number">
             <font>
                 <Font size="16.0" />
             </font>
@@ -39,12 +33,7 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label layoutX="14.0" layoutY="237.0" text="First, choose a page and a line from the book:">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Label>
-        <Label layoutX="187.0" layoutY="64.0" text="so he can hit on Quinn ">
+        <Label layoutX="187.0" layoutY="64.0" text="so he can hit on Robin ">
             <font>
                 <Font size="16.0" />
             </font>
@@ -57,5 +46,10 @@
             </ImageView>
             </children>
         </Pane>
+        <Label layoutX="119.0" layoutY="221.0" text="First, choose a page from the book:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
