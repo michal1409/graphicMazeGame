@@ -14,8 +14,8 @@ public class MyViewModel extends Observable implements Observer {
 
     private int characterPositionRowIndex;
     private int characterPositionColumnIndex;
-    public StringProperty characterPositionRow = new SimpleStringProperty("1"); //For Binding
-    public StringProperty characterPositionColumn = new SimpleStringProperty("1"); //For Binding
+    //public StringProperty characterPositionRow = new SimpleStringProperty("1"); //For Binding
+    //public StringProperty characterPositionColumn = new SimpleStringProperty("1"); //For Binding
     public int rowsInput;
     public int colInput;
 
@@ -28,9 +28,9 @@ public class MyViewModel extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         if (o==model){
             characterPositionRowIndex = model.getCharacterPositionRow();
-            characterPositionRow.set(String.valueOf(characterPositionRowIndex));
+            //characterPositionRow.set(String.valueOf(characterPositionRowIndex));
             characterPositionColumnIndex = model.getCharacterPositionColumn();
-            characterPositionColumn.set(String.valueOf(characterPositionColumnIndex));
+            //characterPositionColumn.set(String.valueOf(characterPositionColumnIndex));
             setChanged();
             notifyObservers();
         }

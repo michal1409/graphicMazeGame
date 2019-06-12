@@ -52,12 +52,13 @@ public class LoginViewController extends ControllerAbstract {
             stage.setTitle("Maze");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/MyView.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, 1000, 1000);
+            Scene scene = new Scene(root, 1000, 800);
             scene.getStylesheets().add(getClass().getResource("../View/View.css").toExternalForm());
             ControllerAbstract view = fxmlLoader.getController();
             //MyViewController view = fxmlLoader.getController();
-            //view.setResizeEvent(scene);
+
             view.setViewModel(viewModel);
+            //view.setResizeEvent(scene);
             viewModel.addObserver(view);
             stage.setScene(scene);
             stage.show();
@@ -135,24 +136,24 @@ public class LoginViewController extends ControllerAbstract {
     public StringProperty PositionColumnProperty() {
         return PositionColumn;
     }
-
+/*
+    @Override
     public void setResizeEvent(Scene scene) {
         long width = 0;
         long height = 0;
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-                System.out.println("Width: " + newSceneWidth);
             }
         });
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
-                System.out.println("Height: " + newSceneHeight);
             }
         });
-    }
 
+    }
+*/
     public void mouseClicked(MouseEvent mouseEvent) {
         this.LoginDisplayer.requestFocus();
     }

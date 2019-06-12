@@ -13,35 +13,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 
 public class MyViewController extends ControllerAbstract {
 
     @FXML
     public MazeDisplayer mazeDisplayer;
-    //public javafx.scene.control.TextField txtfld_rowsNum;
-    //public javafx.scene.control.TextField txtfld_columnsNum;
-    public javafx.scene.control.Label lbl_rowsNum;
-    public javafx.scene.control.Label lbl_columnsNum;
+    public BorderPane BorderPane;
     public javafx.scene.control.Button btn_generateMaze;
     public javafx.scene.control.Button btn_solveMaze;
     private int[][] maze;
 
-
-
     private void bindProperties(MyViewModel viewModel) {
-        String s1=null;
-        String s2=null;
-        StringProperty characterRow = new SimpleStringProperty(s1.valueOf(viewModel.getRowsInput()));
-        StringProperty characterCol = new SimpleStringProperty(s1.valueOf(viewModel.getColInput()));
-        lbl_rowsNum.textProperty().bind(characterRow);
-        lbl_columnsNum.textProperty().bind(characterCol);
-        //this.maze = viewModel.getMaze();
+        mazeDisplayer.heightProperty().bind(BorderPane.heightProperty().multiply(0.9));
+        mazeDisplayer.widthProperty().bind(BorderPane.widthProperty().multiply(0.7));
     }
 
     @Override
@@ -118,22 +111,21 @@ public class MyViewController extends ControllerAbstract {
         return characterPositionColumn;
     }
 
+    //@Override
     public void setResizeEvent(Scene scene) {
-        long width = 0;
-        long height = 0;
+        //long width = 0;
+        //long height = 0;
         scene.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-                System.out.println("Width: " + newSceneWidth);
             }
         });
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
-                System.out.println("Height: " + newSceneHeight);
             }
         });
-        mazeDisplayer.resize(scene.getWidth(),scene.getHeight());
+        mazeDisplayer.redraw();
     }
 
     public void About(ActionEvent actionEvent) {

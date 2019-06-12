@@ -36,17 +36,17 @@ public class MyModel extends Observable implements IModel {
     public void stopServers() {
     }
 
-    public void generateMaze(int width, int height){
+    public void generateMaze(int col, int row){
         threadPool.execute(() -> {
             IMazeGenerator mg = new MyMazeGenerator();
-            Maze MyMaze = mg.generate(height, width);
+            Maze MyMaze = mg.generate(row, col);
             this.maze = MyMaze.getData();
             //MyMaze.print();
             this.mazeObject = MyMaze;
             this.characterPositionRow = MyMaze.getStartPosition().getRow();
             this.characterPositionColumn = MyMaze.getStartPosition().getCol();
-            this.maxRow = height;
-            this.maxCol = width;
+            this.maxRow = row;
+            this.maxCol = col;
             this.goalRow = MyMaze.getGoalPosition().getRow();
             this.goalCol =MyMaze.getGoalPosition().getCol();
 
@@ -120,6 +120,25 @@ public class MyModel extends Observable implements IModel {
 
     public int getGoalPositionColumn() {
         return goalCol;
+    }
+
+    public void loadMaze(String name){
+        byte[] bArray = null; //todo - get the saved byte array.
+        Maze MyMaze = new Maze(bArray);
+        this.maze = MyMaze.getData();
+        this.maxRow = maze.length;
+        this.maxCol = maze[0].length;
+        this.mazeObject = MyMaze;
+        this.characterPositionRow = MyMaze.getStartPosition().getRow();
+        this.characterPositionColumn = MyMaze.getStartPosition().getCol();
+        this.goalRow = MyMaze.getGoalPosition().getRow();
+        this.goalCol =MyMaze.getGoalPosition().getCol();
+    }
+
+    public void saveMaze(String name){
+        byte[] bArray = this.mazeObject.toByteArray();
+        
+
     }
 
 }

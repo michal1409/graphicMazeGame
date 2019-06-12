@@ -2,6 +2,7 @@ package View;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -49,8 +50,8 @@ public class MazeDisplayer extends Canvas {
         if (maze != null) {
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
-            double cellHeight = canvasHeight / maze.length;
-            double cellWidth = canvasWidth / maze[0].length;
+            double cellHeight = (canvasHeight / maze.length);
+            double cellWidth = (canvasWidth / maze[0].length);
 
             try {
                 Image wallImage = new Image(new FileInputStream(ImageFileNameWall.get()));
@@ -80,8 +81,8 @@ public class MazeDisplayer extends Canvas {
                 //Draw Character
                 //gc.setFill(Color.RED);
                 //gc.fillOval(characterPositionColumn * cellHeight, characterPositionRow * cellWidth, cellHeight, cellWidth);
-                gc.drawImage(characterImage, characterPositionColumn * cellHeight, characterPositionRow * cellWidth, cellHeight, cellWidth);
-                gc.drawImage(GoalImage,goalCol * cellHeight, goalRow* cellWidth, cellHeight, cellWidth);
+                gc.drawImage(characterImage, characterPositionColumn * cellWidth, characterPositionRow * cellHeight, cellWidth, cellHeight);
+                gc.drawImage(GoalImage,goalCol * cellWidth, goalRow* cellHeight, cellWidth, cellHeight);
             } catch (FileNotFoundException e) {
                 //e.printStackTrace();
             }
@@ -137,41 +138,6 @@ public class MazeDisplayer extends Canvas {
         this.ImageFileNamePath.set(imageFileNamePath);
     }
 
-    @Override
-    public double minHeight(double width)
-    {
-        return 200;
-    }
-
-    @Override
-    public double maxHeight(double width)
-    {
-        return 1000;
-    }
-
-    @Override
-    public double prefHeight(double height)
-    {
-        return 600;
-    }
-
-    @Override
-    public double prefWidth(double width)
-    {
-        return 600;
-    }
-
-    @Override
-    public double minWidth(double height)
-    {
-        return 200;
-    }
-
-    @Override
-    public double maxWidth(double height)
-    {
-        return 10000;
-    }
 
     @Override
     public boolean isResizable()
@@ -182,8 +148,6 @@ public class MazeDisplayer extends Canvas {
     @Override
     public void resize(double width, double height)
     {
-        super.setWidth(width);
-        super.setHeight(height);
         redraw();
     }
     //endregion
