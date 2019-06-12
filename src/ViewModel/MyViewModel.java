@@ -12,7 +12,7 @@ public class MyViewModel extends Observable implements Observer {
 
     private IModel model;
 
-    private int characterPositionRowIndex;
+    private int characterPositionRowIndex ;
     private int characterPositionColumnIndex;
     public StringProperty characterPositionRow = new SimpleStringProperty("1"); //For Binding
     public StringProperty characterPositionColumn = new SimpleStringProperty("1"); //For Binding
@@ -25,9 +25,11 @@ public class MyViewModel extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         if (o==model){
             characterPositionRowIndex = model.getCharacterPositionRow();
-            characterPositionRow.set(String.valueOf(characterPositionRowIndex));
+            String row = ""+characterPositionRowIndex;
+            characterPositionRow.set(row);
             characterPositionColumnIndex = model.getCharacterPositionColumn();
-            characterPositionColumn.set(String.valueOf(characterPositionColumnIndex));
+            String col = ""+characterPositionColumnIndex;
+            characterPositionColumn.set(col);
             setChanged();
             notifyObservers();
         }

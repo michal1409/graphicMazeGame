@@ -16,8 +16,8 @@ public class MyModel extends Observable implements IModel {
 
     private ExecutorService threadPool = Executors.newCachedThreadPool();
     //TODO - set the private properties from jar and check null and outOfBound
-    private int characterPositionRow = 0; //to get start point
-    private int characterPositionColumn = 0; //to get stars point
+    private int characterPositionRow;
+    private int characterPositionColumn;
     private int[][] maze; // to build from jar
     private Maze mazeObject;
     private int maxRow;

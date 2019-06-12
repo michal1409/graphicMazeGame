@@ -25,15 +25,15 @@ public class Main extends Application {
         //--------------
         primaryStage.setTitle("My Application!");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        //Parent root = fxmlLoader.load(getClass().getResource("View/MyView.fxml").openStream());
+        Parent root = fxmlLoader.load(getClass().getResource("View/MyView.fxml").openStream());
+        //Parent root = fxmlLoader.load(getClass().getResource("View/LoginView.fxml").openStream());
 
-        Parent root = fxmlLoader.load(getClass().getResource("View/LoginView.fxml").openStream());
-        Scene scene = new Scene(root, 1000, 1000);
+        Scene scene = new Scene(root, 800, 800);
         scene.getStylesheets().add(getClass().getResource("View/View.css").toExternalForm());
         primaryStage.setScene(scene);
         //--------------
-        LoginViewController view = fxmlLoader.getController();
-        //MyViewController view = fxmlLoader.getController();
+        //LoginViewController view = fxmlLoader.getController();
+        MyViewController view = fxmlLoader.getController();
         view.setResizeEvent(scene);
         view.setViewModel(viewModel);
         viewModel.addObserver(view);

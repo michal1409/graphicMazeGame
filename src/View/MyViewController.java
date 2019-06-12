@@ -64,8 +64,8 @@ public class MyViewController implements Observer,IView {
         int goalPositionColumn = viewModel.getGoalPositionColumn();
         mazeDisplayer.setCharacterPosition(characterPositionRow, characterPositionColumn);
         mazeDisplayer.setGoalPosition(goalPositionRow, goalPositionColumn);
-        this.characterPositionRow.set(characterPositionRow + "");
-        this.characterPositionColumn.set(characterPositionColumn + "");
+        this.characterPositionRow.set(""+ characterPositionRow);
+        this.characterPositionColumn.set("" + characterPositionColumn);
     }
 
     @Override
@@ -80,26 +80,16 @@ public class MyViewController implements Observer,IView {
         int heigth = 10;
         int width = 10;
         btn_generateMaze.setDisable(true);
-        //btn_solveMaze.setDisable(false);
         viewModel.generateMaze(width, heigth);
     }
 
     public void solveMaze(ActionEvent actionEvent) {
-
-        //showAlert("Solving maze..");
         this.maze = viewModel.getSolution();
     }
 
     private void showAlert(String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(alertMessage);
-        alert.show();
-    }
-
-    private void showAboutAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("This game was programed by Raz Klein and Michal Ezrets/n hope you enjoy the game :) ");
-        alert.setTitle("About");
         alert.show();
     }
 
@@ -149,10 +139,9 @@ public class MyViewController implements Observer,IView {
 
     public void About(ActionEvent actionEvent) {
         //showAboutAlert();
-
         try {
             Stage stage = new Stage();
-            stage.setTitle("AboutController");
+            stage.setTitle("About the game");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("About.fxml").openStream());
             Scene scene = new Scene(root, 400, 350);
@@ -162,15 +151,23 @@ public class MyViewController implements Observer,IView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-            //showAboutAlert();
-
-
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
         this.mazeDisplayer.requestFocus();
+    }
+
+
+    public void HidePath(ActionEvent actionEvent) {
+        mazeDisplayer.HidePath();
+    }
+
+    public void SaveMaze(ActionEvent actionEvent){
+
+    }
+
+    public void LoadMaze(ActionEvent actionEvent){
+
     }
 
     //endregion
