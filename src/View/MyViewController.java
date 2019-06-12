@@ -23,7 +23,6 @@ import java.util.Observer;
 public class MyViewController extends ControllerAbstract {
 
     @FXML
-    private MyViewModel viewModel;
     public MazeDisplayer mazeDisplayer;
     //public javafx.scene.control.TextField txtfld_rowsNum;
     //public javafx.scene.control.TextField txtfld_columnsNum;
@@ -35,15 +34,13 @@ public class MyViewController extends ControllerAbstract {
 
 
 
-    public void setViewModel(MyViewModel viewModel) {
-        this.viewModel = viewModel;
-        bindProperties(viewModel);
-        this.maze = viewModel.getMaze();
-    }
-
     private void bindProperties(MyViewModel viewModel) {
-        lbl_rowsNum.textProperty().bind(viewModel.characterPositionRow);
-        lbl_columnsNum.textProperty().bind(viewModel.characterPositionColumn);
+        String s1=null;
+        String s2=null;
+        StringProperty characterRow = new SimpleStringProperty(s1.valueOf(viewModel.getRowsInput()));
+        StringProperty characterCol = new SimpleStringProperty(s1.valueOf(viewModel.getColInput()));
+        lbl_rowsNum.textProperty().bind(characterRow);
+        lbl_columnsNum.textProperty().bind(characterCol);
         //this.maze = viewModel.getMaze();
     }
 
@@ -64,8 +61,8 @@ public class MyViewController extends ControllerAbstract {
         int goalPositionColumn = viewModel.getGoalPositionColumn();
         mazeDisplayer.setCharacterPosition(characterPositionRow, characterPositionColumn);
         mazeDisplayer.setGoalPosition(goalPositionRow, goalPositionColumn);
-        this.characterPositionRow.set(characterPositionRow + "");
-        this.characterPositionColumn.set(characterPositionColumn + "");
+        this.characterPositionRow.set(""+ characterPositionRow);
+        this.characterPositionColumn.set("" + characterPositionColumn);
     }
 
     @Override
@@ -74,32 +71,24 @@ public class MyViewController extends ControllerAbstract {
     }
 
     public void generateMaze() {
+        bindProperties(viewModel);
+        this.maze = viewModel.getMaze();
         //todo - set the correct values
         //int heigth = Integer.valueOf(txtfld_rowsNum.getText());
         //int width = Integer.valueOf(txtfld_columnsNum.getText());
-        int heigth = 10;
-        int width = 10;
+        int heigth = viewModel.getRowsInput();
+        int width = viewModel.getColInput();
         btn_generateMaze.setDisable(true);
-        //btn_solveMaze.setDisable(false);
         viewModel.generateMaze(width, heigth);
     }
 
     public void solveMaze(ActionEvent actionEvent) {
-
-        //showAlert("Solving maze..");
         this.maze = viewModel.getSolution();
     }
 
     private void showAlert(String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(alertMessage);
-        alert.show();
-    }
-
-    private void showAboutAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("This game was programed by Raz Klein and Michal Ezrets/n hope you enjoy the game :) ");
-        alert.setTitle("About");
         alert.show();
     }
 
@@ -149,10 +138,9 @@ public class MyViewController extends ControllerAbstract {
 
     public void About(ActionEvent actionEvent) {
         //showAboutAlert();
-
         try {
             Stage stage = new Stage();
-            stage.setTitle("AboutController");
+            stage.setTitle("About the game");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("About.fxml").openStream());
             Scene scene = new Scene(root, 400, 350);
@@ -162,15 +150,23 @@ public class MyViewController extends ControllerAbstract {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-            //showAboutAlert();
-
-
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
         this.mazeDisplayer.requestFocus();
+    }
+
+
+    public void HidePath(ActionEvent actionEvent) {
+        mazeDisplayer.HidePath();
+    }
+
+    public void SaveMaze(ActionEvent actionEvent){
+
+    }
+
+    public void LoadMaze(ActionEvent actionEvent){
+
     }
 
     //endregion

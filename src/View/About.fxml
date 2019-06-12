@@ -4,8 +4,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Bla Bla Bla..." />
+      <Label text="This game was programed by Raz Klein and Michal Ezrets" AnchorPane.topAnchor="0" >
+         <font><Font name="Agency FB bold" size="18" /></font>
+      </Label>
+      <Label text="Hope you enjoy the game :)" AnchorPane.topAnchor="20">
+         <font><Font name="Agency FB bold" size="18" /></font>
+      </Label>
    </children>
 </AnchorPane>

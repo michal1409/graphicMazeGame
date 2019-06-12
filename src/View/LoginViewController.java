@@ -28,8 +28,6 @@ import java.util.Observer;
 public class LoginViewController extends ControllerAbstract {
 
     @FXML
-    private MyViewModel viewModel;
-    @FXML
     public LoginDisplayer LoginDisplayer;
     @FXML
     public javafx.scene.control.Button startGameButton;
@@ -42,12 +40,6 @@ public class LoginViewController extends ControllerAbstract {
 
     private MediaPlayer media;
 
-
-
-    public void setViewModel(MyViewModel viewModel) {
-        this.viewModel = viewModel;
-        displayLogin();
-    }
 
     public void OnButtonPressed() throws IOException {
         if (rowNumInput==null || colNumInput==null ||isInteger(rowNumInput.getText(),10) && isInteger(colNumInput.getText(),10)){
@@ -62,6 +54,11 @@ public class LoginViewController extends ControllerAbstract {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root, 1000, 1000);
             scene.getStylesheets().add(getClass().getResource("../View/View.css").toExternalForm());
+            ControllerAbstract view = fxmlLoader.getController();
+            //MyViewController view = fxmlLoader.getController();
+            //view.setResizeEvent(scene);
+            view.setViewModel(viewModel);
+            viewModel.addObserver(view);
             stage.setScene(scene);
             stage.show();
 

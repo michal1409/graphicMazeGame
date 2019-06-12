@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 public class MazeDisplayer extends Canvas {
 
     private int[][] maze;
-    private int[][] sol;
     private int goalCol ;
     private int goalRow;
     private int characterPositionRow = 1;
@@ -87,6 +86,17 @@ public class MazeDisplayer extends Canvas {
                 //e.printStackTrace();
             }
         }
+    }
+
+    public void HidePath(){
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                if(maze[i][j] == 8 ){
+                    maze[i][j] = 0;
+                }
+            }
+        }
+        redraw();
     }
 
     //region Properties
