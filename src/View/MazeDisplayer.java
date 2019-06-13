@@ -50,8 +50,8 @@ public class MazeDisplayer extends Canvas {
         if (maze != null) {
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
-            double cellHeight = (canvasHeight / maze.length);
-            double cellWidth = (canvasWidth / maze[0].length);
+            double cellHeight = canvasHeight / maze.length;
+            double cellWidth = canvasWidth / maze[0].length;
 
             try {
                 Image wallImage = new Image(new FileInputStream(ImageFileNameWall.get()));
@@ -149,6 +149,13 @@ public class MazeDisplayer extends Canvas {
     public void resize(double width, double height)
     {
         redraw();
+    }
+
+    public boolean isGoalReached(){
+        if (characterPositionColumn==goalCol && characterPositionRow==goalRow)
+            return true;
+        else
+            return false;
     }
     //endregion
 

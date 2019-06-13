@@ -62,18 +62,31 @@ public class MyModel extends Observable implements IModel {
     public void moveCharacter(KeyCode movement){
         //TODO - check if the move is no into wall or outOfBound
         switch (movement) {
-            case UP:
+            case DIGIT2:
                 if(characterPositionRow>0 && notWall(characterPositionRow-1,characterPositionColumn)){characterPositionRow--;}
                 break;
-            case DOWN:
+            case DIGIT8:
                 if(characterPositionRow<this.maxRow-1 && notWall(characterPositionRow+1,characterPositionColumn) ){characterPositionRow++;}
                 break;
-            case RIGHT:
+            case DIGIT6:
                 if(characterPositionColumn<this.maxCol-1 && notWall(characterPositionRow,characterPositionColumn+1) ){characterPositionColumn++;}
                 break;
-            case LEFT:
+            case DIGIT4:
                 if(characterPositionColumn>0 && notWall(characterPositionRow,characterPositionColumn-1) ){characterPositionColumn--;}
                 break;
+            case DIGIT1:
+                if(characterPositionRow>0 && characterPositionColumn>0 && notWall(characterPositionRow-1,characterPositionColumn-1)){characterPositionRow--; characterPositionColumn--;}
+                break;
+            case DIGIT3:
+                if(characterPositionColumn<this.maxCol-1 && characterPositionRow>0 && notWall(characterPositionRow-1,characterPositionColumn+1) ){characterPositionRow--; characterPositionColumn++;}
+                break;
+            case DIGIT7:
+                if(characterPositionRow<this.maxRow-1 && characterPositionColumn>0 && notWall(characterPositionRow+1,characterPositionColumn-1) ){characterPositionColumn--; characterPositionRow++;}
+                break;
+            case DIGIT9:
+                if(characterPositionColumn<this.maxCol-1 && characterPositionRow<this.maxRow-1 && notWall(characterPositionRow+1,characterPositionColumn+1) ){characterPositionRow++; characterPositionColumn++;}
+                break;
+
         }
         setChanged();
         notifyObservers();
