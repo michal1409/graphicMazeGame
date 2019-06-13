@@ -63,10 +63,10 @@
                                 <MenuItem mnemonicParsing="false" onAction="#generateMaze" text="New" />
                             </items>
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#SaveMaze" text="Save" />
+                                <MenuItem mnemonicParsing="false" onAction="#saveMaze" text="Save" />
                             </items>
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#LoadMaze" text="Load" />
+                                <MenuItem mnemonicParsing="false" onAction="#readMaze" text="Load" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Options">
@@ -76,13 +76,13 @@
                         </Menu>
                         <Menu mnemonicParsing="false" onAction="#closeStage" text="Exit">
                             <items>
-                              <MenuItem mnemonicParsing="false" onAction="#closeStage" text="Exit" />
-                             </items>
+                                <MenuItem mnemonicParsing="false" onAction="#closeStage" text="Exit" />
+                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
-                        <items>
-                            <MenuItem mnemonicParsing="false" onAction="#Help" text="Help" />
-                        </items>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#Help" text="Help" />
+                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="About" onAction="#About">
                             <items>
@@ -97,7 +97,7 @@
     <center>
         <Pane BorderPane.alignment="CENTER">
             <children>
-                <MazeDisplayer fx:id="mazeDisplayer" imageFileNameCharacter="resources/Images/character1.png" imageFileNameGoal="resources/Images/goal.png" imageFileNamePath="resources/Images/Path.png" imageFileNameWall="resources/Images/wall3.png" onMouseClicked="#mouseClicked"/>
+                <MazeDisplayer fx:id="mazeDisplayer" imageFileNameCharacter="resources/Images/character1.png" imageFileNameGoal="resources/Images/goal.png" imageFileNamePath="resources/Images/Path.png" imageFileNameWall="resources/Images/wall3.png" onMouseClicked="#mouseClicked" onScroll="#handleScroll"/>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

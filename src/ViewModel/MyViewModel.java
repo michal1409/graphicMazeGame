@@ -40,6 +40,7 @@ public class MyViewModel extends Observable implements Observer {
         model.generateMaze(width, height);
     }
 
+    public void generateReadMaze(int w, int h, int[][] maze, int posCol, int posRow, int goalCol, int goalRow){ model.generateReadMaze(w,h,maze, posCol, posRow, goalCol, goalRow);}
     public void moveCharacter(KeyCode movement){
         model.moveCharacter(movement);
     }
@@ -70,5 +71,9 @@ public class MyViewModel extends Observable implements Observer {
     public void setColInput(int n){colInput=n;}
 
 
+    public void setGoalRow(int n){ this.model.setGoalRow(n);}
+    public void setGoalCol(int n){ this.model.setGoalCol(n);}
+    public void setCurrRow(int n){ this.model.setCurrRow(n);}
+    public void setCurrCol(int n){this.model.setCurrCol(n);}
 
 }

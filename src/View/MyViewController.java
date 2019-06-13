@@ -11,27 +11,36 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.File;
-import java.io.IOException;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextAreaBuilder;
+import javafx.scene.text.Text;
+
+import java.io.*;
 import java.nio.file.Paths;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MyViewController extends ControllerAbstract {
 
@@ -45,6 +54,8 @@ public class MyViewController extends ControllerAbstract {
     private MediaPlayer media1;
     private MediaPlayer media2;
     private boolean pressed = false;
+    int heigth;
+    int width;
 
 
     private void bindProperties(MyViewModel viewModel) {
@@ -86,8 +97,8 @@ public class MyViewController extends ControllerAbstract {
         //todo - set the correct values
         //int heigth = Integer.valueOf(txtfld_rowsNum.getText());
         //int width = Integer.valueOf(txtfld_columnsNum.getText());
-        int heigth = viewModel.getRowsInput();
-        int width = viewModel.getColInput();
+        heigth = viewModel.getRowsInput();
+        width = viewModel.getColInput();
         btn_generateMaze.setDisable(true);
         viewModel.generateMaze(width, heigth);
     }
@@ -249,7 +260,128 @@ public class MyViewController extends ControllerAbstract {
         });
     }
 
+    public void saveMaze() {
+        String mazeDetails = String.valueOf(heigth) + " " + String.valueOf(width)+ " " + String.valueOf(this.viewModel.getCharacterPositionColumn()+" "
+        + String.valueOf(this.viewModel.getCharacterPositionRow()+" "+String.valueOf(this.viewModel.getGoalPositionColumn()+" "+
+                String.valueOf(this.viewModel.getGoalPositionRow()))));
 
+        int [][] maze = this.viewModel.getMaze();
+        for (int i=0; i<maze.length; i++){
+            for (int j=0; j<maze.length; j++){
+                if (maze[i][j]==1)
+                    mazeDetails=mazeDetails+" "+String.valueOf(1);
+                else
+                    mazeDetails=mazeDetails+" "+String.valueOf(0);
+            }
+        }
+
+
+
+        Text sample = new Text(mazeDetails);
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(this.stageCon);
+        if (file != null) {
+            saveTextToFile(mazeDetails, file);
+        }
+    }
+    private void saveTextToFile(String content, File file) {
+        try {
+            PrintWriter writer;
+            writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MyViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void readMaze() {
+        FileChooser fileChooser = new FileChooser();
+        TextArea textArea = TextAreaBuilder.create()
+                .prefWidth(400)
+                .wrapText(true)
+                .build();
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showOpenDialog(this.stageCon);
+        if(file != null){
+            textArea.setText(readFile(file));
+            String mazeTexe = textArea.getText();
+            String[] splited = mazeTexe.split("\\s+");
+            this.viewModel.setRowsInput(Integer.parseInt(splited[0]));
+            this.viewModel.setColInput(Integer.parseInt(splited[1]));
+            this.maze = new int[Integer.parseInt(splited[0])][Integer.parseInt(splited[1])];
+            int index=6;
+            for (int i=0; i<Integer.parseInt(splited[0]); i++) {
+                for (int j = 0; j < Integer.parseInt(splited[0]); j++) {
+                    maze[i][j] = Integer.parseInt(splited[index]);
+                    index++;
+                }
+            }
+            musicBackground();
+            bindProperties(viewModel);
+            heigth = viewModel.getRowsInput();
+            width = viewModel.getColInput();
+            btn_generateMaze.setDisable(true);
+            viewModel.generateReadMaze(width, heigth,maze, Integer.parseInt(splited[2]), Integer.parseInt(splited[3]), Integer.parseInt(splited[4]), Integer.parseInt(splited[5]));
+
+        }
+
+    }
+
+    private String readFile(File file){
+        StringBuilder stringBuffer = new StringBuilder();
+        BufferedReader bufferedReader = null;
+
+        try {
+
+            bufferedReader = new BufferedReader(new FileReader(file));
+
+            String text;
+            while ((text = bufferedReader.readLine()) != null) {
+                stringBuffer.append(text);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MyViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MyViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                bufferedReader.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MyViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return stringBuffer.toString();
+    }
+
+    public void handleScroll(ScrollEvent event) {
+        if (!event.isControlDown()) return;
+        if (mazeDisplayer.getScaleX() <= 1 && mazeDisplayer.getScaleX() >= 0.25) {
+            double zoomFactor = 1.05;
+            double deltaY = event.getDeltaY();
+            if (deltaY < 0) {
+                zoomFactor = 2.0 - zoomFactor;
+            }
+
+            mazeDisplayer.setScaleX(mazeDisplayer.getScaleX() * zoomFactor);
+            mazeDisplayer.setScaleY(mazeDisplayer.getScaleY() * zoomFactor);
+        } else if (mazeDisplayer.getScaleX() > 1) {
+            mazeDisplayer.setScaleX(1);
+            mazeDisplayer.setScaleY(1);
+        } else if (mazeDisplayer.getScaleX() < 0.25) {
+            mazeDisplayer.setScaleX(0.25);
+            mazeDisplayer.setScaleY(0.25);
+        }
+        event.consume();
+    }
 
     //endregion
     //todo - save maze : use file chooser to save the maze.

@@ -59,6 +59,31 @@ public class MyModel extends Observable implements IModel {
             notifyObservers();
         });
     }
+
+    public void generateReadMaze(int col, int row, int[][] maze, int posCol, int posRow, int goalCol, int goalRow){
+        threadPool.execute(() -> {
+            IMazeGenerator mg = new MyMazeGenerator();
+            Maze MyMaze = mg.generate(row, col);
+            this.maze = maze;
+            //MyMaze.print();
+            this.mazeObject = MyMaze;
+            this.characterPositionRow = posRow;
+            this.characterPositionColumn = posCol;
+            this.maxRow = row;
+            this.maxCol = col;
+            this.goalRow = goalRow;
+            this.goalCol =goalCol;
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            setChanged();
+            notifyObservers();
+        });
+    }
+
     public void moveCharacter(KeyCode movement){
         //TODO - check if the move is no into wall or outOfBound
         switch (movement) {
@@ -153,5 +178,14 @@ public class MyModel extends Observable implements IModel {
         
 
     }
+
+    public void setGoalRow(int n){ this.goalRow=n;}
+    public void setGoalCol(int n){ this.goalCol=n;}
+    public void setCurrRow(int n){ this.characterPositionRow=n;}
+    public void setCurrCol(int n){ this.characterPositionColumn=n;}
+    public int getCurrRow(){ return this.characterPositionRow;}
+    public int getCurrCol(){ return this.characterPositionColumn;}
+
+
 
 }

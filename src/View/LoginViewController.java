@@ -46,8 +46,8 @@ public class LoginViewController extends ControllerAbstract {
     private MediaPlayer media;
 
     public void OnButtonPressed() throws IOException {
-        if (rowNumInput==null || isInteger(rowNumInput.getText(),10)){
-            viewModel.setColInput(Integer.valueOf(rowNumInput.getText()));
+        if (rowNumInput!=null && colNumInput!=null && isInteger(rowNumInput.getText(),10) && isInteger(colNumInput.getText(),10)){
+            viewModel.setColInput(Integer.valueOf(colNumInput.getText()));
             viewModel.setRowsInput(Integer.valueOf(rowNumInput.getText()));
             // open the next scene
             stageCon.close();

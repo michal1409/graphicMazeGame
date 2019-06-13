@@ -12,44 +12,48 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#KeyPressed" prefHeight="348.0" prefWidth="527.0" style="-fx-background-color: LIGHTYELLOW;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginViewController">
     <children>
         <LoginDisplayer fx:id="LoginDisplayer" height="348.0" imageFileNameFirst="" imageFileNameSecond="" onMouseClicked="#mouseClicked" width="527.0" />
-        <Button fx:id="startGameButton" layoutX="187.0" layoutY="289.0" mnemonicParsing="false" onAction="#OnButtonPressed" prefHeight="38.0" prefWidth="123.0" text="Now Find It!">
+        <Button fx:id="startGameButton" layoutX="187.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnButtonPressed" prefHeight="38.0" prefWidth="123.0" text="Now Find It!">
             <font>
                 <Font size="17.0" />
             </font>
         </Button>
-        <TextField fx:id="rowNumInput" layoutX="261.0" layoutY="255.0" prefHeight="25.0" prefWidth="89.0" />
-        <Label layoutX="153.0" layoutY="14.0" prefHeight="31.0" prefWidth="234.0" text="Barnie lost his magic " textOverrun="CLIP">
+        <TextField fx:id="rowNumInput" layoutX="256.0" layoutY="231.0" prefHeight="25.0" prefWidth="89.0" />
+        <Label layoutX="132.0" layoutY="14.0" prefHeight="31.0" prefWidth="234.0" text="Barnie lost his magic " textOverrun="CLIP">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="138.0" layoutY="255.0" text="Page Number">
+        <Label layoutX="138.0" layoutY="231.0" text="Page Number">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label layoutX="177.0" layoutY="45.0" text="Help him find the Playbook">
+        <Label layoutX="152.0" layoutY="50.0" text="Help him find the Playbook">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label layoutX="187.0" layoutY="64.0" text="so he can hit on Robin ">
+        <Label layoutX="167.0" layoutY="71.0" text="so he can hit on Robin ">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
         <ImageView fx:id="image1" fitHeight="164.0" fitWidth="130.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-        <Pane prefHeight="200.0" prefWidth="527.0">
+        <Pane layoutX="-8.0" prefHeight="200.0" prefWidth="527.0">
             <children>
                 <LoginDisplayer fx:id="mazeDisplayer" imageFileNameFirst="resources/Images/first.png" imageFileNameSecond="resources/Images/Second.jpg" />
-            <ImageView fx:id="image12" fitHeight="150.0" fitWidth="130.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-            </ImageView>
             </children>
         </Pane>
-        <Label layoutX="119.0" layoutY="221.0" text="First, choose a page from the book:">
+        <Label layoutX="96.0" layoutY="200.0" text="First, choose a page and a Line from the book:">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
+      <Label layoutX="144.0" layoutY="264.0" text="Line Number">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="colNumInput" layoutX="256.0" layoutY="264.0" prefHeight="25.0" prefWidth="89.0" />
     </children>
 </AnchorPane>
